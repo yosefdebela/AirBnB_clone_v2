@@ -14,6 +14,7 @@ from models.state import State
 from models.city import City
 from models.amenity import Amenity
 from models.review import Review
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -262,8 +263,9 @@ class HBNBCommand(cmd.Cmd):
         else:
             for k, v in storage.all().items():
                 print_list.append(str(v))
-
-        print(print_list)
+        pretty_json = json.dumps(print_list, indent=1)
+        print(pretty_json)
+        # print(print_list)
 
     def help_all(self):
         """ Help information for the all command """
