@@ -6,12 +6,11 @@ from fabric.api import local
 from fabric.api import put
 from fabric.api import run
 
-#env.hosts = ['54.174.219.233', '54.165.192.62']
-env.hosts = ['lubuntu.test ', 'lubuntu2.test']
-#env.hosts = ['54.174.219.233 ', '52.23.244.196']
-#env.user = 'ubuntu'
-env.user = 'lubuntu'
-#env.key_filename = '~/.ssh/school'
+env.hosts = ['35.153.18.19', '54.172.86.31']
+
+env.user = 'ubuntu'
+
+env.key_filename = '~/.ssh/school'
 
 
 def do_pack():
@@ -48,13 +47,13 @@ def do_deploy(archive_path):
     if put(archive_path, "/tmp/{}".format(file)).failed is True:
         return False
     if run("rm -rf /data/web_static/releases/{}/".
-           format(name)).failed is True:
+                   format(name)).failed is True:
         return False
     if run("mkdir -p /data/web_static/releases/{}/".
-           format(name)).failed is True:
+                   format(name)).failed is True:
         return False
     if run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
-           format(file, name)).failed is True:
+                   format(file, name)).failed is True:
         return False
     if run("rm /tmp/{}".format(file)).failed is True:
         return False
@@ -62,12 +61,12 @@ def do_deploy(archive_path):
            "/data/web_static/releases/{}/".format(name, name)).failed is True:
         return False
     if run("rm -rf /data/web_static/releases/{}/web_static".
-           format(name)).failed is True:
+                   format(name)).failed is True:
         return False
     if run("rm -rf /data/web_static/current").failed is True:
         return False
     if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
-           format(name)).failed is True:
+                   format(name)).failed is True:
         return False
     return True
 
