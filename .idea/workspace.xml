@@ -7,10 +7,14 @@
     <list default="true" id="0c40cd4a-0e5e-4d4f-b1d9-254f29704fca" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/100-clean_web_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/100-clean_web_static.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3-deploy_web_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/3-deploy_web_static.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20231002220635.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20231021191714.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20231021191722.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20240102233106.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_202412211618.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_202412211637.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20241221442.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20241221453.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_202412214750.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20241221486.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_202412215418.tgz" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,7 @@
     "Python tests.Python tests in test.py.executor": "Run",
     "Python..3-deploy_web_static.executor": "Run",
     "Python.1-pack_web_static.executor": "Run",
+    "Python.100-clean_web_static.executor": "Run",
     "Python.3-deploy_web_static.executor": "Run",
     "Python.base_model.executor": "Run",
     "Python.console.executor": "Run",
@@ -60,7 +65,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Python..3-deploy_web_static">
+  <component name="RunManager" selected="Python.3-deploy_web_static">
     <configuration name="1-pack_web_static" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AirBnB_clone_v2" />
       <option name="ENV_FILES" value="" />
@@ -75,6 +80,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/1-pack_web_static.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="100-clean_web_static" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AirBnB_clone_v2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/100-clean_web_static.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -150,28 +177,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="db_storage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AirBnB_clone_v2" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models/engine" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/models/engine/db_storage.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="AirBnB_clone_v2" type="Python.FlaskServer">
       <module name="AirBnB_clone_v2" />
       <option name="target" value="$PROJECT_DIR$/web_flask/100-hbnb.py" />
@@ -189,11 +194,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python..3-deploy_web_static" />
         <item itemvalue="Python.3-deploy_web_static" />
+        <item itemvalue="Python..3-deploy_web_static" />
+        <item itemvalue="Python.100-clean_web_static" />
         <item itemvalue="Python.1-pack_web_static" />
         <item itemvalue="Python.console" />
-        <item itemvalue="Python.db_storage" />
       </list>
     </recent_temporary>
   </component>
@@ -227,5 +232,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/1-pack_web_static.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
