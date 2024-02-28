@@ -6,7 +6,7 @@ from fabric.api import local
 from fabric.api import put
 from fabric.api import run
 
-env.hosts = ['52.87.31.150', '100.25.104.211']
+env.hosts = ['myweb.test', 'myweb2.test']
 
 env.user = 'ubuntu'
 

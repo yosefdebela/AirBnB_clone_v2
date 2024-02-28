@@ -5,7 +5,7 @@ from fabric.api import *
 from datetime import datetime
 from os import path
 
-env.hosts = ['52.87.31.150', '100.25.104.211']
+env.hosts = ['myweb.test', 'myweb2.test']
 
 env.user = 'ubuntu'
 
@@ -24,6 +24,7 @@ def do_deploy(archive_path):
 
         # create target dir
         timestamp = archive_path[-18:-4]
+        print(timestamp)
         run('sudo mkdir -p /data/web_static/\
 releases/web_static_{}/'.format(timestamp))
 
