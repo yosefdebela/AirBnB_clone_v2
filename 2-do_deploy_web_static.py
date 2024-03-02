@@ -23,8 +23,8 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/')
 
         # create target dir
+
         timestamp = archive_path[-18:-4]
-        print(timestamp)
         run('sudo mkdir -p /data/web_static/\
 releases/web_static_{}/'.format(timestamp))
 
