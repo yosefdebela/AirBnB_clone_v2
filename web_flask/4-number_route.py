@@ -14,7 +14,7 @@ def hello():
     return ("Hello HBNB!")
 
 
-@app.route("/hbnb", strict_slashes=False)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
     """Returns a given string"""
     return ("HBNB")
@@ -41,4 +41,4 @@ def isNumber(n):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=None)
+    app.run(host="0.0.0.0", port=5000, debug=True)
