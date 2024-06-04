@@ -1,13 +1,23 @@
 #!/usr/bin/python3
 """Compress web static package
 """
+import dotenv
+from dotenv import load_dotenv
+import os
 from fabric.api import *
 from datetime import datetime
 from os import path
+from fabric.api import env
 
-env.hosts = ['myweb.test', 'myweb2.test']
+load_dotenv()
+
+myweb1 = os.getenv('myweb1')
+myweb2 = os.getenv('myweb2')
+env.hosts = [myweb1, myweb2]
+# env.hosts = ['127.17.0.2']
 
 env.user = 'ubuntu'
+# env.users = 'root'
 
 env.key_filename = '~/.ssh/school'
 

@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c40cd4a-0e5e-4d4f-b1d9-254f29704fca" name="Changes" comment="full deploy modify">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/100-clean_web_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/100-clean_web_static.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0-setup_web_static.sh" beforeDir="false" afterPath="$PROJECT_DIR$/0-setup_web_static.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/0-transfer_file" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2-do_deploy_web_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/2-do_deploy_web_static.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.json" beforeDir="false" afterPath="$PROJECT_DIR$/file.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20240302211413.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20243219855.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_flask/7-states_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/7-states_list.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web_flask/templates/7-states_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/templates/7-states_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,30 +47,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python tests.Python tests in dagalo.py.executor": "Run",
-    "Python tests.Python tests in test.py.executor": "Run",
-    "Python..3-deploy_web_static.executor": "Run",
-    "Python.1-pack_web_static.executor": "Run",
-    "Python.100-clean_web_static.executor": "Run",
-    "Python.3-deploy_web_static.executor": "Run",
-    "Python.base_model.executor": "Run",
-    "Python.console.executor": "Run",
-    "Python.dagalo.executor": "Run",
-    "Python.db_storage.executor": "Run",
-    "Python.file_storage.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/yos/stack@alx/AirBnB_clone_v2/hbnbenv",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests in dagalo.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python..3-deploy_web_static.executor&quot;: &quot;Run&quot;,
+    &quot;Python.1-pack_web_static.executor&quot;: &quot;Run&quot;,
+    &quot;Python.100-clean_web_static.executor&quot;: &quot;Run&quot;,
+    &quot;Python.3-deploy_web_static.executor&quot;: &quot;Run&quot;,
+    &quot;Python.7-states_list.executor&quot;: &quot;Run&quot;,
+    &quot;Python.base_model.executor&quot;: &quot;Run&quot;,
+    &quot;Python.console.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dagalo.executor&quot;: &quot;Run&quot;,
+    &quot;Python.db_storage.executor&quot;: &quot;Run&quot;,
+    &quot;Python.file_storage.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yos/stack@alx/AirBnB_clone_v2/hbnbenv&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python.1-pack_web_static">
+}</component>
+  <component name="RunManager" selected="Python.7-states_list">
     <configuration name="1-pack_web_static" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AirBnB_clone_v2" />
       <option name="ENV_FILES" value="" />
@@ -128,6 +138,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="7-states_list" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AirBnB_clone_v2" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/web_flask" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/web_flask/7-states_list.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name=".3-deploy_web_static" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AirBnB_clone_v2" />
       <option name="ENV_FILES" value="" />
@@ -142,29 +174,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/.3-deploy_web_static.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="console" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="AirBnB_clone_v2" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/console.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -190,18 +199,18 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.7-states_list" />
         <item itemvalue="Python.1-pack_web_static" />
         <item itemvalue="Python.100-clean_web_static" />
         <item itemvalue="Python.3-deploy_web_static" />
         <item itemvalue="Python..3-deploy_web_static" />
-        <item itemvalue="Python.console" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
+        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
       </set>
     </attachedChunks>
   </component>
@@ -232,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709408130745</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="full deploy modify">
+      <option name="closed" value="true" />
+      <created>1709409928526</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709409928526</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

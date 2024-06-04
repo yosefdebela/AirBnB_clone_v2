@@ -1,14 +1,21 @@
 #!/usr/bin/python3
 import os.path
+import os
+import dotenv
+from dotenv import load_dotenv
 from datetime import datetime
 from fabric.api import env
 from fabric.api import local
 from fabric.api import put
 from fabric.api import run
-
-env.hosts = ['myweb.test', 'myweb2.test']
+load_dotenv()
+myweb1 = os.getenv('myweb1')
+myweb2 = os.getenv('myweb2')
+env.hosts = [myweb1, myweb2]
+# env.hosts = ['127.17.0.2']
 
 env.user = 'ubuntu'
+# env.users = 'root'
 
 env.key_filename = '~/.ssh/school'
 
