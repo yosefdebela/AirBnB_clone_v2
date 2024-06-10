@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c40cd4a-0e5e-4d4f-b1d9-254f29704fca" name="Changes" comment="full">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20240604235946.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20243219923.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_202464212730.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_202464212740.tgz" beforeDir="false" />
-    </list>
+    <list default="true" id="0c40cd4a-0e5e-4d4f-b1d9-254f29704fca" name="Changes" comment="full" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -267,7 +261,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718043361853</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="full">
+      <option name="closed" value="true" />
+      <created>1718043814066</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718043814066</updated>
+    </task>
+    <task id="LOCAL-00008" summary="full">
+      <option name="closed" value="true" />
+      <created>1718043824596</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718043824596</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
