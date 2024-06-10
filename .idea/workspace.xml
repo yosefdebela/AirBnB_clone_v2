@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c40cd4a-0e5e-4d4f-b1d9-254f29704fca" name="Changes" comment="full deploy modify">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="0c40cd4a-0e5e-4d4f-b1d9-254f29704fca" name="Changes" comment="full">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0-setup_web_static.sh" beforeDir="false" afterPath="$PROJECT_DIR$/0-setup_web_static.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/0-transfer_file" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2-do_deploy_web_static.py" beforeDir="false" afterPath="$PROJECT_DIR$/2-do_deploy_web_static.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/file.json" beforeDir="false" afterPath="$PROJECT_DIR$/file.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20240302211413.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/versions/web_static_20243219855.tgz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_flask/7-states_list.py" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/7-states_list.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web_flask/templates/7-states_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/web_flask/templates/7-states_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20240604235946.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_20243219923.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_202464212730.tgz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/versions/web_static_202464212740.tgz" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +65,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.7-states_list">
+  <component name="RunManager" selected="Python.3-deploy_web_static">
     <configuration name="1-pack_web_static" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="AirBnB_clone_v2" />
       <option name="ENV_FILES" value="" />
@@ -199,10 +193,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.3-deploy_web_static" />
         <item itemvalue="Python.7-states_list" />
         <item itemvalue="Python.1-pack_web_static" />
         <item itemvalue="Python.100-clean_web_static" />
-        <item itemvalue="Python.3-deploy_web_static" />
         <item itemvalue="Python..3-deploy_web_static" />
       </list>
     </recent_temporary>
@@ -210,7 +204,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-09665e90c3a7-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.15026.15" />
+        <option value="bundled-python-sdk-babbdf50b680-746f403e7f0c-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-241.15989.155" />
       </set>
     </attachedChunks>
   </component>
@@ -249,7 +243,31 @@
       <option name="project" value="LOCAL" />
       <updated>1709409928526</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="full">
+      <option name="closed" value="true" />
+      <created>1717958582262</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1717958582262</updated>
+    </task>
+    <task id="LOCAL-00005" summary="full">
+      <option name="closed" value="true" />
+      <created>1717958863115</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1717958863115</updated>
+    </task>
+    <task id="LOCAL-00006" summary="full">
+      <option name="closed" value="true" />
+      <created>1718043361853</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718043361853</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +283,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="full deploy modify" />
-    <option name="LAST_COMMIT_MESSAGE" value="full deploy modify" />
+    <MESSAGE value="full" />
+    <option name="LAST_COMMIT_MESSAGE" value="full" />
   </component>
 </project>
