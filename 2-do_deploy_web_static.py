@@ -61,7 +61,8 @@ web_static_{}/web_static'
         # re-establish symbolic link
         run('sudo ln -s /data/web_static/releases/\
 web_static_{}/ /data/web_static/current'.format(timestamp))
-    except:
+    except Exception as e:
+        print(f"An error occurred: {e}")
         return False
 
     # return True on success
