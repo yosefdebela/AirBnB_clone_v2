@@ -1,3 +1,4 @@
+
 # Puppet for setup
 
 $nginx_conf = "server {
