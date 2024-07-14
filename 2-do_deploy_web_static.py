@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Compress web static package
 """
-import dotenv
+# import dotenv
 from dotenv import load_dotenv
 import os
 from fabric.api import *
-from datetime import datetime
+# from datetime import datetime
 from os import path
 from fabric.api import env
 
