@@ -1,48 +1,69 @@
 #!/usr/bin/python3
-# Fabfile to distribute an archive to a web server.
-import os.path
+"""Compress web static package
+"""
+import dotenv
+from dotenv import load_dotenv
+import os
+from fabric.api import *
+from datetime import datetime
+from os import path
 from fabric.api import env
-from fabric.api import put
-from fabric.api import run
 
-env.hosts = ["54.89.49.229", "100.25.143.172"]
+load_dotenv()
+
+myweb1 = os.getenv('myweb1')
+myweb2 = os.getenv('myweb2')
+env.hosts = [myweb1, myweb2]
+# env.hosts = ['127.17.0.2']
+
+env.user = 'ubuntu'
+# env.users = 'root'
+
+env.key_filename = '~/.ssh/school'
 
 
 def do_deploy(archive_path):
-    """Distributes an archive to a web server.
-    Args:
-        archive_path (str): The path of the archive to distribute.
-    Returns:
-        If the file doesn't exist at archive_path or an error occurs - False.
-        Otherwise - True.
-    """
-    if os.path.isfile(archive_path) is False:
-        return False
-    file = archive_path.split("/")[-1]
-    name = file.split(".")[0]
+    """Deploy web files to server
+        """
+    try:
+        if not (path.exists(archive_path)):
+            return False
 
-    if put(archive_path, "/tmp/{}".format(file)).failed is True:
+        # upload archive
+        put(archive_path, '/tmp/')
+
+        # create target dir
+
+        timestamp = archive_path[-18:-4]
+        run('sudo mkdir -p /data/web_static/\
+releases/web_static_{}/'.format(timestamp))
+
+        # uncompress archive and delete .tgz
+        run('sudo tar -xzf /tmp/web_static_{}.tgz -C \
+/data/web_static/releases/web_static_{}/'
+            .format(timestamp, timestamp))
+
+        # remove archive
+        run('sudo rm /tmp/web_static_{}.tgz'.format(timestamp))
+
+        # move contents into host web_static
+        run('sudo mv /data/web_static/releases/web_static_{}/web_static/* \
+/data/web_static/releases/web_static_{}/'.format(timestamp, timestamp))
+
+        # remove extraneous web_static dir
+        run('sudo rm -rf /data/web_static/releases/\
+web_static_{}/web_static'
+            .format(timestamp))
+
+        # delete pre-existing sym link
+        run('sudo rm -rf /data/web_static/current')
+
+        # re-establish symbolic link
+        run('sudo ln -s /data/web_static/releases/\
+web_static_{}/ /data/web_static/current'.format(timestamp))
+    except Exception as e:
+        print(f"An error occurred: {e}")
         return False
-    if run("rm -rf /data/web_static/releases/{}/".
-           format(name)).failed is True:
-        return False
-    if run("mkdir -p /data/web_static/releases/{}/".
-           format(name)).failed is True:
-        return False
-    if run("tar -xzf /tmp/{} -C /data/web_static/releases/{}/".
-           format(file, name)).failed is True:
-        return False
-    if run("rm /tmp/{}".format(file)).failed is True:
-        return False
-    if run("mv /data/web_static/releases/{}/web_static/* "
-           "/data/web_static/releases/{}/".format(name, name)).failed is True:
-        return False
-    if run("rm -rf /data/web_static/releases/{}/web_static".
-           format(name)).failed is True:
-        return False
-    if run("rm -rf /data/web_static/current").failed is True:
-        return False
-    if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
-           format(name)).failed is True:
-        return False
+
+    # return True on success
     return True
