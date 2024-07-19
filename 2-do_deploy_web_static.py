@@ -23,8 +23,7 @@ env.key_filename = '~/.ssh/school'
 
 
 def do_deploy(archive_path):
-    """Deploy web files to server
-        """
+    """Deploy web files to server using Fabric"""
     try:
         if not (path.exists(archive_path)):
             return False
