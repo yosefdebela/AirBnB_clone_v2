@@ -47,7 +47,7 @@ releases/web_static_{}/'.format(timestamp))
         run('sudo rm /tmp/web_static_{}.tgz'.format(timestamp))
 
         # move contents into host web_static
-        run('sudo mv /data/web_static/releases/web_static_{}/web_static/* \
+        run('sudo mv  /data/web_static/releases/web_static_{}/web_static/* \
 /data/web_static/releases/web_static_{}/'.format(timestamp, timestamp))
 
         # remove extraneous web_static dir
