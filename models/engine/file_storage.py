@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Defines the FileStorage class."""
+
 import json
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -49,18 +50,22 @@ class FileStorage:
         """Deserialize the JSON file __file_path to __objects, if it exists."""
         try:
             with open(self.__file_path, "r", encoding="utf-8") as f:
+                class_map = {
+                    "BaseModel": BaseModel,
+                    "User": User,
+                    "Place": Place,
+                    "State": State,
+                    "City": City,
+                    "Amenity": Amenity,
+                    "Review": Review
+                }
                 for o in json.load(f).values():
                     name = o["__class__"]
                     del o["__class__"]
-                    self.new(eval(name)(**o))
+                    cls = class_map.get(name)
+                    if cls:
+                        self.new(cls(**o))
         except FileNotFoundError:
-            pass
-
-    def delete(self, obj=None):
-        """Delete a given object from __objects, if it exists."""
-        try:
-            del self.__objects["{}.{}".format(type(obj).__name__, obj.id)]
-        except (AttributeError, KeyError):
             pass
 
     def close(self):
