@@ -1,0 +1,11 @@
+# fabric.yaml
+run:
+  echo: true
+  warn: true
+
+connections:
+  NB02:
+    host: NB02
+    user: yosef
+    connect_kwargs:
+      password: yosef

@@ -1,89 +1,62 @@
-#!/usr/bin/python3
-"""Compress web static package
-"""
-# import dotenv
-from dotenv import load_dotenv
+from fabric import task, Connection
 import os
-from os.path import exists
-from fabric.api import *
-# from datetime import datetime
-from os import path
-from fabric.api import env
+from dotenv import load_dotenv
 
+# Load environment variables from .env (if using one)
 load_dotenv()
 
-myweb1 = os.getenv('myweb1')
-myweb2 = os.getenv('myweb2')
-env.hosts = [myweb1, myweb2]
-# env.hosts = ['127.17.0.2']
-
-env.user = 'ubuntu'
-# env.users = 'root'
-
-env.key_filename = '~/.ssh/school'
+# Server IPs (update these or load from env)
+web_servers = [os.getenv('WEB_SERVER_1'), os.getenv('WEB_SERVER_2')]
 
 
-# def do_deploy(archive_path):
-#     """Deploy web files to server using Fabric
-#     , this one will deploy our web_static files to the server"""
-#     try:
-#         if not (path.exists(archive_path)):
-#             return False
-#
-#         # upload archive
-#         put(archive_path, '/tmp/')
-#
-#         # create target dir
-#
-#         timestamp = archive_path[-18:-4]
-#         run('sudo mkdir -p /data/web_static/\
-# releases/web_static_{}/'.format(timestamp))
-#
-#         # uncompress archive and delete .tgz
-#         run('sudo tar -xzf /tmp/web_static_{}.tgz -C \
-# /data/web_static/releases/web_static_{}/'
-#             .format(timestamp, timestamp))
-#
-#         # remove archive
-#         run('sudo rm /tmp/web_static_{}.tgz'.format(timestamp))
-#
-#         # move contents into host web_static
-#         run('sudo mv  /data/web_static/releases/web_static_{}/web_static/* \
-# /data/web_static/releases/web_static_{}/'.format(timestamp, timestamp))
-#
-#         # remove extraneous web_static dir
-#         run('sudo rm -rf /data/web_static/releases/\
-# web_static_{}/web_static'
-#             .format(timestamp))
-#
-#         # delete pre-existing sym link
-#         run('sudo rm -rf /data/web_static/current')
-#
-#         # re-establish symbolic link
-#         run('sudo ln -s /data/web_static/releases/\
-# web_static_{}/ /data/web_static/current'.format(timestamp))
-#     except Exception as e:
-#         print(f"An error occurred: {e}")
-#         return False
-#
-#     # return True on success
-#     return True
-def do_deploy(archive_path):
-    """distributes an archive to the web servers"""
-    if exists(archive_path) is False:
+def do_deploy(c, archive_path):
+    """Distribute archive to web servers and deploy."""
+    if not os.path.exists(archive_path):
+        print("Archive path does not exist")
         return False
+
     try:
-        file_n = archive_path.split("/")[-1]
-        no_ext = file_n.split(".")[0]
-        path = "/data/web_static/releases/"
-        put(archive_path, '/tmp/')
-        run('mkdir -p {}{}/'.format(path, no_ext))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_n, path, no_ext))
-        run('rm /tmp/{}'.format(file_n))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_ext))
-        run('rm -rf {}{}/web_static'.format(path, no_ext))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
+        archive_file = archive_path.split("/")[-1]
+        archive_folder = archive_file.replace(".tgz", "")
+        release_path = f"/data/web_static/releases/{archive_folder}"
+
+        for host in web_servers:
+            print(f"Deploying to {host}...")
+
+            conn = Connection(
+                host=host,
+                user=os.getenv("USER"),  # or hard-code e.g., 'ubuntu'
+                connect_kwargs={"key_filename": os.getenv("SSH_KEY")}  # or use password
+            )
+
+            # Upload the archive to /tmp/
+            conn.put(archive_path, "/tmp/")
+
+            # Create the release folder
+            conn.run(f"mkdir -p {release_path}")
+
+            # Extract the archive
+            conn.run(f"tar -xzf /tmp/{archive_file} -C {release_path}")
+
+            # Move content out of web_static subfolder
+            conn.run(f"mv {release_path}/web_static/* {release_path}/")
+
+            # Remove the now empty subfolder
+            conn.run(f"rm -rf {release_path}/web_static")
+
+            # Remove the archive from /tmp/
+            conn.run(f"rm /tmp/{archive_file}")
+
+            # Remove old symbolic link
+            conn.run("rm -rf /data/web_static/current")
+
+            # Create new symbolic link
+            conn.run(f"ln -s {release_path} /data/web_static/current")
+
+            print(f"Deployment to {host} complete.")
+
         return True
-    except:
+
+    except Exception as e:
+        print(f"Deployment failed: {e}")
         return False

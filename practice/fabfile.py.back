@@ -1,0 +1,19 @@
+
+
+
+from fabric import task
+from time import strftime
+
+@task
+def do_pack(c):
+    """Generate a .tgz archive from web_static folder."""
+    filename = strftime("%Y%m%d%H%M%S")
+    try:
+        c.local("mkdir -p versions")
+        archive_path = f"versions/web_static_{filename}.tgz"
+        c.local(f"tar -czvf {archive_path} web_static/")
+        print(f"web_static packed: {archive_path}")
+        return archive_path
+    except Exception as e:
+        print(f"Packing failed: {e}")
+        return None
