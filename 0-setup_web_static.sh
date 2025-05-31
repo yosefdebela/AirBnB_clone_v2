@@ -21,9 +21,8 @@ sudo echo "<html>
 sudo ln -s -f /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -R ubuntu:ubuntu /data/
-sudo sed -i '29i\\tlocation /hbnb_static  {\n\talias /data/web_static/current/;\n\t}' /etc/nginx/sites-available/default
-
-
-# sudo sed -i '/listen 80 default_server/a \n\tlocation /hbnb_static \n\t{ \t\talias /data/web_static/current/;}' /etc/nginx/sites-available/default
-
+nginx_config="/etc/nginx/sites-available/default"
+if ! grep -q "location /hbnb_static/" "$nginx_config"; then
+    sudo sed -i "/server_name _;/a \\\n\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tindex index.html;\n\t}" "$nginx_config"
+fi
 sudo service nginx restart

@@ -1,62 +1,78 @@
-from fabric import task, Connection
+#!/usr/bin/env python3
 import os
+import glob
+from fabric import Connection
 from dotenv import load_dotenv
 
-# Load environment variables from .env (if using one)
+# Load environment variables from .env
 load_dotenv()
 
-# Server IPs (update these or load from env)
-web_servers = [os.getenv('WEB_SERVER_1'), os.getenv('WEB_SERVER_2')]
+# Retrieve environment variables
+web01 = os.getenv('web01')
+web02 = os.getenv('web02')
+key_path = os.getenv('file_path')
+password = os.getenv('password')  # Optional
+servers = [web01, web02]
 
+def get_latest_archive():
+    """Find the latest .tgz archive in the versions/ directory"""
+    matching_files = glob.glob("versions/web_static_*.tgz")
+    if matching_files:
+        latest = max(matching_files, key=os.path.getmtime)
+        print(f"Latest archive: {latest}")
+        return latest
+    else:
+        print("No archives found.")
+        return None
 
-def do_deploy(c, archive_path):
-    """Distribute archive to web servers and deploy."""
-    if not os.path.exists(archive_path):
-        print("Archive path does not exist")
-        return False
+def do_deploy():
+    """Deploy the latest archive to all web servers"""
+    archive_path = get_latest_archive()
+    if not archive_path or not os.path.exists(archive_path):
+        print("❌ No archive found to deploy.")
+        return
 
-    try:
-        archive_file = archive_path.split("/")[-1]
-        archive_folder = archive_file.replace(".tgz", "")
-        release_path = f"/data/web_static/releases/{archive_folder}"
+    archive_file = os.path.basename(archive_path)  # e.g., web_static_20250530.tgz
+    archive_name = archive_file.replace(".tgz", "")  # e.g., web_static_20250530
+    release_path = f"/data/web_static/releases/{archive_name}/"
 
-        for host in web_servers:
-            print(f"Deploying to {host}...")
+    for server in servers:
+        if not server:
+            continue  # Skip if server is None
 
-            conn = Connection(
-                host=host,
-                user=os.getenv("USER"),  # or hard-code e.g., 'ubuntu'
-                connect_kwargs={"key_filename": os.getenv("SSH_KEY")}  # or use password
-            )
+        print(f"\n🚀 Deploying to {server}...")
 
-            # Upload the archive to /tmp/
-            conn.put(archive_path, "/tmp/")
+        c = Connection(
+            host=server,
+            user='ubuntu',
+            connect_kwargs={"key_filename": key_path, "password": password}
+        )
 
-            # Create the release folder
-            conn.run(f"mkdir -p {release_path}")
+        try:
+            # Upload archive
+            c.put(archive_path, "/tmp/")
 
-            # Extract the archive
-            conn.run(f"tar -xzf /tmp/{archive_file} -C {release_path}")
+            # Create release directory
+            c.run(f"mkdir -p {release_path}")
 
-            # Move content out of web_static subfolder
-            conn.run(f"mv {release_path}/web_static/* {release_path}/")
+            # Extract archive
+            c.run(f"tar -xzf /tmp/{archive_file} -C {release_path}")
 
-            # Remove the now empty subfolder
-            conn.run(f"rm -rf {release_path}/web_static")
+            # Move content from web_static to release path root
+            c.run(f"mv {release_path}web_static/* {release_path}")
+            c.run(f"rm -rf {release_path}web_static")
 
-            # Remove the archive from /tmp/
-            conn.run(f"rm /tmp/{archive_file}")
+            # Remove the archive
+            c.run(f"rm /tmp/{archive_file}")
 
-            # Remove old symbolic link
-            conn.run("rm -rf /data/web_static/current")
+            # Update symbolic link
+            c.run("rm -rf /data/web_static/current")
+            c.run(f"ln -s {release_path} /data/web_static/current")
 
-            # Create new symbolic link
-            conn.run(f"ln -s {release_path} /data/web_static/current")
+            print(f"✅ Deployment to {server} completed successfully.")
 
-            print(f"Deployment to {host} complete.")
+        except Exception as e:
+            print(f"❌ Deployment to {server} failed: {e}")
 
-        return True
-
-    except Exception as e:
-        print(f"Deployment failed: {e}")
-        return False
+if __name__ == "__main__":
+    do_deploy()
