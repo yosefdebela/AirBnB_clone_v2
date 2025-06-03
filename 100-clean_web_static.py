@@ -1,8 +1,7 @@
+#!/usr/bin/env python3
 import os
-from time import strftime
-import glob
-from dotenv import load_dotenv
 from fabric import Connection
+from dotenv import load_dotenv
 
 # Load environment variables from .env
 load_dotenv()
@@ -15,22 +14,37 @@ password = os.getenv('password')  # Optional
 servers = [web01, web02]
 
 def do_clean(number=0):
-    """Delete out-of-date archives.
-    Args:
-        number (int): The number of archives to keep.
-    If number is 0 or 1, keeps only the most recent archive. If
-    number is 2, keeps the most and second-most recent archives,
-    etc.
-    """
-    number = 1 if int(number) == 0 else int(number)
+    """Delete out-of-date archives locally and on remote servers."""
+    number = int(number)
+    number = 1 if number <= 1 else number
 
+    # === Clean local ===
     archives = sorted(os.listdir("versions"))
-    [archives.pop() for i in range(number)]
-    with lcd("versions"):
-        [local("rm ./{}".format(a)) for a in archives]
+    to_delete = archives[:-number]
+    for archive in to_delete:
+        local_path = os.path.join("versions", archive)
+        if os.path.isfile(local_path):
+            os.remove(local_path)
+            print(f"Deleted local archive: {archive}")
 
-    with cd("/data/web_static/releases"):
-        archives = run("ls -tr").split()
-        archives = [a for a in archives if "web_static_" in a]
-        [archives.pop() for i in range(number)]
-        [run("rm -rf ./{}".format(a)) for a in archives]
+    # === Clean remote ===
+    for host in servers:
+        if host:
+            print(f"\nConnecting to {host}...")
+            c = Connection(
+                host=host,
+                user='ubuntu',
+                connect_kwargs={"key_filename": key_path, "password": password}
+            )
+            with c.cd("/data/web_static/releases"):
+                result = c.run("ls -tr", hide=True)
+                archives = result.stdout.strip().split()
+                archives = [a for a in archives if a.startswith("web_static_")]
+                to_delete = archives[:-number]
+                for archive in to_delete:
+                    c.run(f"rm -rf {archive}")
+                    print(f"Deleted remote archive: {archive} on {host}")
+
+
+if __name__ == '__main__':
+    do_clean()
