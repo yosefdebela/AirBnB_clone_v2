@@ -1,10 +1,18 @@
-#!/usr/bin/python3
-# Fabfile to delete out-of-date archives.
 import os
-from fabric.api import *
+from time import strftime
+import glob
+from dotenv import load_dotenv
+from fabric import Connection
 
-env.hosts = ["54.89.49.229", "100.25.143.172"]
+# Load environment variables from .env
+load_dotenv()
 
+# Retrieve environment variables
+web01 = os.getenv('web01')
+web02 = os.getenv('web02')
+key_path = os.getenv('file_path')
+password = os.getenv('password')  # Optional
+servers = [web01, web02]
 
 def do_clean(number=0):
     """Delete out-of-date archives.

@@ -26,16 +26,7 @@ def do_pack():
     except Exception as e:
         print(f"Packing failed: {e}")
         return None
-do_pack()
+
 
 if __name__ == "__main__":
-    if len(argv) != 2:
-        print("Usage: python3 your_script.py <function_name>")
-        exit(1)
-
-    func_name = argv[1]
-
-    if func_name in globals() and callable(globals()[func_name]):
-        globals()[func_name]()  # Call the function
-    else:
-        print(f"Function '{func_name}' not found.")
+	do_pack()
