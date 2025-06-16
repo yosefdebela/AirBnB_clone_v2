@@ -6,22 +6,22 @@ from models.base_model import Base
 from models.base_model import BaseModel
 from models.amenity import Amenity
 from models.review import Review
-from sqlalchemy import Column
-from sqlalchemy import Float
-from sqlalchemy import ForeignKey
-from sqlalchemy import Integer
-from sqlalchemy import String
-from sqlalchemy import Table
-from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Float, ForeignKey, Integer, String, Table
+from sqlalchemy.orm import relationship, Mapped, mapped_column
+# from models.place_amenity import PlaceAmenity
+from models.amenity import place_amenity
 
 
-association_table = Table("place_amenity", Base.metadata,
-                          Column("place_id", String(60),
-                                 ForeignKey("places.id"),
-                                 primary_key=True, nullable=False),
-                          Column("amenity_id", String(60),
-                                 ForeignKey("amenities.id"),
-                                 primary_key=True, nullable=False))
+
+# association_table = Table("place_amenity", Base.metadata,
+#                           Column("place_id", String(60),
+#                                  ForeignKey("places.id"),
+#                                  primary_key=True, nullable=False),
+#                           Column("amenity_id", String(60),
+#                                  ForeignKey("amenities.id"),
+#                                  primary_key=True, nullable=False),
+#                           extend_existing=True)
+
 
 
 class Place(BaseModel, Base):
@@ -44,6 +44,7 @@ class Place(BaseModel, Base):
         amenity_ids (list): An id list of all linked amenities.
     """
     __tablename__ = "places"
+    id = Column(String(60), primary_key=True, nullable=False)
     city_id = Column(String(60), ForeignKey("cities.id"), nullable=False)
     user_id = Column(String(60), ForeignKey("users.id"), nullable=False)
     name = Column(String(128), nullable=False)
@@ -55,30 +56,20 @@ class Place(BaseModel, Base):
     latitude = Column(Float)
     longitude = Column(Float)
     reviews = relationship("Review", backref="place", cascade="delete")
-    amenities = relationship("Amenity", secondary="place_amenity",
-                             viewonly=False)
+    amenities = relationship("Amenity", secondary=place_amenity, back_populates="places", viewonly=False)
+
     amenity_ids = []
 
-    if getenv("HBNB_TYPE_STORAGE", None) != "db":
+    if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def reviews(self):
-            """Get a list of all linked Reviews."""
-            review_list = []
-            for review in list(models.storage.all(Review).values()):
-                if review.place_id == self.id:
-                    review_list.append(review)
-            return review_list
+            return [r for r in models.storage.all(Review).values() if r.place_id == self.id]
 
         @property
         def amenities(self):
-            """Get/set linked Amenities."""
-            amenity_list = []
-            for amenity in list(models.storage.all(Amenity).values()):
-                if amenity.id in self.amenity_ids:
-                    amenity_list.append(amenity)
-            return amenity_list
+            return [a for a in models.storage.all(Amenity).values() if a.id in self.amenity_ids]
 
         @amenities.setter
-        def amenities(self, value):
-            if type(value) == Amenity:
-                self.amenity_ids.append(value.id)
+        def amenities(self, obj):
+            if isinstance(obj, Amenity):
+                self.amenity_ids.append(obj.id)

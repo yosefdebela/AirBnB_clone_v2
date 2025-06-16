@@ -1,0 +1,22 @@
+/* 5-filter.css */
+
+.filter-grayscale {
+  filter: grayscale(100%);
+}
+
+.filter-blur {
+  filter: blur(8px);
+}
+
+.filter-brightness {
+  filter: brightness(1.2);
+}
+
+.filter-contrast {
+  filter: contrast(1.5);
+}
+
+/* Hover-based dynamic filter */
+.hover-filter:hover {
+  filter: sepia(60%) hue-rotate(45deg);
+}
